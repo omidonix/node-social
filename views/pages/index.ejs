@@ -1,0 +1,33 @@
+<%- include('../header'); -%>
+<section>
+    <div class="gap gray-bg">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <aside class="sidebar static">
+                    </aside>
+                </div>
+                <div class="col-lg-6">
+
+
+                    <%- include('../components/new_post'); -%>
+
+
+                    <div class="loadMore">
+                        <input type="hidden" class="count_loadded_post" value="<%- posts.length %>">
+                        <% posts.forEach(post => { %>
+                        <%- include('../components/post_item',{post: post}); -%>
+                        <% }) %>
+                    </div>
+                    <button class="btn-view btn-load-more">Load More</button>
+                </div><!-- centerl meta -->
+                <div class="col-lg-3">
+                    <aside class="sidebar static">
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('../footer'); -%>

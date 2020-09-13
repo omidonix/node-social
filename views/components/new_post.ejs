@@ -1,0 +1,38 @@
+
+<div class="central-meta">
+    <div class="new-postbox">
+        <% if(hasError == true){ %>
+            <div class="alert alert-danger" role="alert">
+                <%- messages.join(' <br> ') %>
+            </div>
+        <% } %>
+        <% if (hasError == false && messages.length > 0){ %>
+            <div class="alert alert-success" role="alert">
+                <%= messages.join('<br>') %>
+            </div>
+        <% } %>
+        <figure>
+            <img src="images/resources/admin2.jpg" alt="">
+        </figure>
+        <div class="newpst-input">
+            <form method="post" action="/posts/create">
+                <input type="hidden" name="attach_file_id" id="attach_file_id" value="<%= params.attach_file_id ? params.attach_file_id : '' %>">
+                <textarea rows="2" placeholder="write something" name="message" ><%= params.message ? params.message : '' %></textarea>
+                <div class="attachments btn-form">
+                    <ul>
+                        <li>
+                            <i class="fa fa-paperclip"></i>
+                            <label class="fileContainer">
+                                <input type="file" name="attach_file" id="attach_file">
+                            </label>
+                        </li>
+                        <li>
+                            <button type="button" id="upload_btn">Uplaod File</button>
+                            <button type="submit">Post</button>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div><!-- add post new box -->

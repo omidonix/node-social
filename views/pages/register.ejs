@@ -1,0 +1,88 @@
+<%- include('../landing_header') -%>
+<div class="login-reg-bg show">
+    <div class="log-reg-area reg">
+
+        <h2 class="log-title">Register</h2>
+
+        <form method="post" action="/users/register" id="register-form">
+
+            <div class="form-group  
+                <% if (hasError && err.fullname) { %>
+                    <%= " has-error" %>
+                <% } %>" > 
+                <input type="text" name="fullname" value="<%= typeof params !== 'undefined' && params.fullname ? params.fullname : '' %>" />
+                <label class="control-label" for="input">First & Last Name</label><i class="mtrl-select"></i>
+                <% if(hasError && err.fullname) { %>
+                    <p class="text-danger"><%- err.fullname.msg %></p>
+                <% } %>
+            </div>
+
+            <div class="form-group 
+                <% if (hasError && err.username) { %>
+                    <%= " has-error" %>
+                <% } %>" > 
+                <input type="text" name="username" value="<%= typeof params !== 'undefined' && params.username ? params.username : '' %>"/>
+                <label class="control-label" for="input">User Name</label><i class="mtrl-select"></i>
+                <% if(hasError && err.username) { %>
+                    <p class="text-danger"><%- err.username.msg %></p>
+                <% } %>
+            </div>
+
+            <div class="form-group 
+                <% if (hasError && err.email) { %>
+                    <%= " has-error" %>
+                <% } %>" > 
+                <input type="text" name="email" value="<%= typeof params !== 'undefined' && params.email ? params.email : '' %>"/>
+                <label class="control-label" for="input">Email</label><i class="mtrl-select"></i>
+                <% if(hasError && err.email) { %>
+                    <p class="text-danger"><%- err.email.msg %></p>
+                <% } %>
+            </div>
+
+            <div class="form-group
+                <% if (hasError && err.password) { %>
+                    <%= " has-error" %>
+                <% } %>" > 
+                <input type="password" name="password" />
+                <label class="control-label" for="input">Password</label><i class="mtrl-select"></i>
+                <% if(hasError && err.password) { %>
+                    <p class="text-danger"><%- err.password.msg %></p>
+                <% } %>
+            </div>
+
+            <div class="form-group
+                <% if (hasError && err.repassword) { %>
+                    <%= " has-error" %>
+                <% } %>" > 
+                <input type="password" name="repassword" />
+                <label class="control-label" for="input">Re Password</label><i class="mtrl-select"></i>
+                <% if(hasError && err.repassword) { %>
+                    <p class="text-danger"><%- err.repassword.msg %></p>
+                <% } %>
+            
+            </div>
+
+            <div class="form-radio">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="gender" value="Male" <%= typeof params !== 'undefined' && params.gender=='Male' ? "checked" : "" %>/><i class="check-box"></i>Male
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="gender" value="Female" <%= typeof params !== 'undefined' && params.gender=='Female' ? "checked" : "" %>/><i class="check-box"></i>Female
+                    </label>
+                </div>
+                <% if(hasError && err.gender) { %>
+                    <p class="text-danger"><%- err.gender.msg %></p>
+                <% } %>
+            </div>
+            
+            <a href="login" title="" class="forgot-pwd">Already have an account</a>
+            <div class="submit-btns">
+                <button class="mtr-btn " type="submit"><span>Register</span></button>
+            </div>
+        </form>
+    </div>
+</div>
+<%- include('../landing_footer') -%>

@@ -1,0 +1,14 @@
+<li>
+    <div class="comet-avatar">
+        <img src="images/resources/comet-1.jpg" alt="">
+    </div>
+    <div class="we-comment">
+        <div class="coment-head">
+            <h5><a href="time-line.html" title=""><%= comment.users.fullname%> - <%= comment.users.username %></a></h5>
+            <span><%= comment.createdAt %></span>
+        </div>
+        <p>
+            <%- comment.content %>
+        </p>
+    </div>
+</li>

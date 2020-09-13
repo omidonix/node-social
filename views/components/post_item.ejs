@@ -1,0 +1,153 @@
+<div class="central-meta item">
+    <div class="user-post">
+        <div class="friend-info">
+            <figure>
+                <img src="images/resources/friend-avatar10.jpg" alt="">
+            </figure>
+            <div class="friend-name">
+                <ins><a href="time-line.html" title=""><%= post.users.fullname%> ( <%= post.users.username %> )</a></ins>
+                <span>published: <%= post.createdAt %></span>
+            </div>
+            <div class="post-meta">
+                <!-- <img src="images/resources/user-post.jpg" alt=""> -->
+                <!-- <img src="images/resources/page1.jpg" alt=""> -->
+                                
+                <% if(post.file && (post.file.extention == 'image/jpeg' || post.file.extention == 'image/pjpeg')) { %>
+                    <img src="/upload/posts/<%- post.file.name %>" alt="">
+                <% } %>
+
+                <% if(post.file && (post.file.extention == 'video/3gpp' || post.file.extention == 'video/mp4')) { %>
+                    <video style="width: 100%;" controls>
+                        <source src="/upload/posts/<%- post.file.name %>" type="<%- post.file.extention %>">
+                        Your browser does not support HTML video.
+                    </video>
+                <% } %>
+
+
+                <% if(post.file && post.file.extention == 'audio/mpeg' ) { %>
+                    <audio style="width: 100%;" controls>
+                        <source src="/upload/posts/<%- post.file.name %>" type="<%- post.file.extention %>">
+                        Your browser does not support the audio element.
+                    </audio>
+                <% } %>
+                
+                
+                <div class="we-video-info">
+                    <ul>
+                        <li>
+                            <span class="views" data-toggle="tooltip" title="views">
+                                <i class="fa fa-eye"></i>
+                                <ins><%= post.view_count %></ins>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="comment" data-toggle="tooltip" title="Comments">
+                                <i class="fa fa-comments-o"></i>
+                                <ins><%= post.comment_count %></ins>
+                            </span>
+                        </li>
+                        <li>
+
+                            <a href="/posts/like_post/<%- post.id %>" class="like-link">
+                                <span class="like" data-toggle="tooltip" title="like">
+                                    <i class="ti-heart"></i>
+                                    <ins class="likeCount"><%= post.like_count %></ins>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/posts/dislike_post/<%- post.id %>" class="dislike-link">
+                                <span class="dislike" data-toggle="tooltip" title="dislike">
+                                    <i class="ti-heart-broken"></i>
+                                    <ins class="dislikeCount"><%= post.dislike_count %></ins>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="social-media">
+                            <div class="menu">
+                              <div class="btn trigger"><i class="fa fa-share-alt"></i></div>
+                              <div class="rotater">
+                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a></div>
+                              </div>
+                              <div class="rotater">
+                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
+                              </div>
+                              <div class="rotater">
+                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a></div>
+                              </div>
+                              <div class="rotater">
+                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a></div>
+                              </div>
+                              <div class="rotater">
+                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a></div>
+                              </div>
+                              <div class="rotater">
+                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a>
+                                </div>
+                              </div>
+                                <div class="rotater">
+                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-dribbble"></i></a>
+                                </div>
+                              </div>
+                              <div class="rotater">
+                                <div class="btn btn-icon"><a href="#" title=""><i class="fa fa-pinterest"></i></a>
+                                </div>
+                              </div>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="description">
+                    <p>
+                        <%= post.content %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="coment-area">
+            <ul class="we-comet">
+                <div class= "comment-items-section">
+                    <% post.comment.forEach(comment=> { %>
+
+                        <%- include('../components/comment_items',{comment: comment}); -%>
+                    
+                    <% }) %> 
+                    <li>
+                        <a href="/posts/list_comment/<%- post.id %>" title="" class="showmore underline show-more-list-comment">more comments</a>
+                    </li>
+                </div>
+                <br>
+                <li class="post-comment">
+                    <div class="comet-avatar">
+                        <img src="images/resources/comet-1.jpg" alt="">
+                    </div>
+                    <div class="post-comt-box">
+                        <form method="post" class="comment-form">
+                            <input type="hidden" name="post_id" value="<%- post.id %>">
+                            <textarea placeholder="Post your comment" name="message" rows="1"></textarea>
+                            <div class="add-smiles">
+                                <span class="em em-expressionless" title="add icon"></span>
+                            </div>
+                            <div class="smiles-bunch">
+                                <i class="em em---1"></i>
+                                <i class="em em-smiley"></i>
+                                <i class="em em-anguished"></i>
+                                <i class="em em-laughing"></i>
+                                <i class="em em-angry"></i>
+                                <i class="em em-astonished"></i>
+                                <i class="em em-blush"></i>
+                                <i class="em em-disappointed"></i>
+                                <i class="em em-worried"></i>
+                                <i class="em em-kissing_heart"></i>
+                                <i class="em em-rage"></i>
+                                <i class="em em-stuck_out_tongue"></i>
+                            </div>
+                            <button type="submit"></button>
+                        </form>	
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
