@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require("mongoose")
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -49,6 +50,17 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/profile', profilesRouter);
+
+
+//mongo connection
+mongoose.connect("mongodb://localhost:27017/social", { useNewUrlParser: true, useUnifiedTopology: true })
+	.then(() => {
+		console.log('connection mongo started')
+    })
+    .catch(err => {
+      console.log('mongo connection error')
+      console.log(err)
+    })
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

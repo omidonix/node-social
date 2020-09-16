@@ -5,7 +5,9 @@ const {isNotAuthenticated,isAuthenticated} = require('../middleware/authenticate
 
 
 //chat view page
-router.get('/chat',profileController.chat)
+router.get('/chat',isAuthenticated,profileController.chat)
+
+router.get('/conversation_list/:to_user_id',profileController.conversationList)
 
 
 module.exports = router;

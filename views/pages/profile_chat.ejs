@@ -28,19 +28,4 @@
     </div>
 </section>
 
-
-<script>
-
-
-    jQuery(document).ready(function($) {
-
-        var socket = io();
-
-        socket.on('message', function(message){
-            console.log(message)
-        })
-        
-    })
-</script>
-
 <%- include('../footer'); -%>

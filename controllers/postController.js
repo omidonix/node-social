@@ -270,7 +270,7 @@ module.exports.loadPost = async function(req, res, next){
   if(posts && posts.length > 0){
 
     //awaito bardaro bezar ta befahmi nodejs chetori kar mikone stackesh
-     await posts.forEach(async post =>{
+    posts.forEach(async post =>{
       // console.log('1')
       let view = _ejs.renderFile(__dirname+'/../views/components/post_item.ejs', { 
         post: post
